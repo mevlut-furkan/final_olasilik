@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Olasılık Dünyası</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0f1923;
+  --card:#1a2535;
+  --gold:#f6c844;
+  --gold-dark:#c49a1a;
+  --orange:#FF9500;
+  --orange-dark:#FF6B35;
+  --green:#10c98f;
+  --navy:#1B2D4F;
+  --white:#fff8e7;
+  --muted:rgba(255,248,231,.55);
+}
+
+html,body{height:100%;min-height:100vh}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  height:100vh;
+}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 20%, rgba(255,149,0,.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(99,102,241,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(16,201,143,.07) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;z-index:0;
+}
+
+.page{
+  position:relative;z-index:1;
+  width:100%;max-width:640px;
+  padding:0 24px;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:32px;
+}
+
+/* Header */
+.header{animation:fadeUp .8s ease both}
+
+h1{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(42px,8vw,80px);
+  line-height:1.0;
+  letter-spacing:.5px;
+}
+
+h1 .line1{display:block;color:var(--white);}
+h1 .line2{
+  display:block;
+  background:linear-gradient(135deg,var(--orange-dark),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* Divider */
+.divider{
+  display:flex;align-items:center;gap:14px;
+  width:100%;max-width:300px;
+  opacity:.3;
+}
+.divider::before,.divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,248,231,.7),transparent);
+}
+.divider-icon{font-size:16px}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  width:100%;
+}
+
+.card{
+  background:var(--card);
+  border-radius:24px;
+  border:1.5px solid rgba(255,255,255,.08);
+  padding:30px 20px 26px;
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;
+  overflow:hidden;
+  transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+  animation:fadeUp .8s ease both;
+}
+.card:nth-child(1){animation-delay:.15s}
+.card:nth-child(2){animation-delay:.28s}
+
+.card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  border-radius:24px 24px 0 0;
+}
+.card.torba::before{background:linear-gradient(90deg,var(--orange-dark),var(--orange))}
+.card.mac::before{background:linear-gradient(90deg,#0c7a3f,var(--gold))}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.2);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.card-icon{
+  font-size:52px;
+  margin-bottom:16px;
+  display:block;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.3));
+  transition:transform .3s ease;
+}
+.card:hover .card-icon{transform:scale(1.12) rotate(-3deg)}
+
+.card-title{
+  font-family:'Fredoka One',cursive;
+  font-size:22px;
+  letter-spacing:.3px;
+  margin-bottom:20px;
+  color:var(--white);
+}
+
+.card-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 22px;
+  border-radius:50px;
+  font-family:'Fredoka One',cursive;
+  font-size:14px;
+  letter-spacing:.3px;
+  border:none;cursor:pointer;
+  transition:all .15s;
+  margin-top:auto;
+}
+.card.torba .card-btn{
+  background:linear-gradient(135deg,var(--orange-dark),var(--orange));
+  color:#fff;
+  box-shadow:0 4px 16px rgba(255,107,53,.35);
+}
+.card.mac .card-btn{
+  background:linear-gradient(135deg,#0c7a3f,#1aa362);
+  color:#fff;
+  box-shadow:0 4px 16px rgba(12,122,63,.4);
+}
+.card:hover .card-btn{transform:scale(1.05)}
+
+/* Footer */
+.footer{
+  color:rgba(255,248,231,.28);
+  font-size:12px;font-weight:700;
+  letter-spacing:.08em;
+  animation:fadeUp .8s .5s ease both;
+}
+
+/* Floating orbs */
+.orb{position:fixed;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;animation:float linear infinite;}
+.orb1{width:200px;height:200px;background:rgba(255,107,53,.08);top:10%;left:-5%;animation-duration:20s}
+.orb2{width:160px;height:160px;background:rgba(246,200,68,.07);bottom:15%;right:-4%;animation-duration:26s;animation-direction:reverse}
+.orb3{width:120px;height:120px;background:rgba(16,201,143,.06);top:55%;left:60%;animation-duration:18s}
+
+@keyframes float{
+  0%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(20px,-15px) scale(1.05)}
+  66%{transform:translate(-15px,10px) scale(.97)}
+  100%{transform:translate(0,0) scale(1)}
+}
+
+@keyframes fadeUp{
+  0%{opacity:0;transform:translateY(20px)}
+  100%{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="page">
+
+  <div class="header">
+    <h1>
+      <span class="line1">Olasılık</span>
+      <span class="line2">Dünyası</span>
+    </h1>
+  </div>
+
+  <div class="divider"><span class="divider-icon">✦</span></div>
+
+  <div class="cards">
+    <a class="card torba" href="olasilik_torba_v4.html">
+      <span class="card-icon">🎒</span>
+      <div class="card-title">Olasılık Torbası</div>
+      <span class="card-btn">Oyna →</span>
+    </a>
+
+    <a class="card mac" href="index.html">
+      <span class="card-icon">⚽</span>
+      <div class="card-title">Olasılık Maçı</div>
+      <span class="card-btn">Oyna →</span>
+    </a>
+  </div>
+
+  <div class="footer">mevlüt furkan ince</div>
+
+</div>
+</body>
+</html>

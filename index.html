@@ -281,6 +281,7 @@
 </style>
 </head>
 <body>
+<a href="anasayfa.html" style="position:fixed;top:16px;left:16px;z-index:9999;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:50px;background:rgba(15,25,35,.85);backdrop-filter:blur(8px);color:#fff8e7;font-family:'Outfit',sans-serif;font-weight:800;font-size:13px;letter-spacing:.06em;text-decoration:none;border:1px solid rgba(246,200,68,.3);box-shadow:0 4px 16px rgba(0,0,0,.35);transition:all .15s;text-transform:uppercase;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(246,200,68,.7)';this.style.color='#f6c844'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(246,200,68,.3)';this.style.color='#fff8e7'">← Ana Sayfa</a>
 <main>
   <header class="topbar">
     <div class="logo">OLASILIK<span class="dot">•</span>STADYUMU</div>
@@ -304,8 +305,8 @@
   <section class="screen" id="screen-fixtures">
     <div class="section-title">
       <div class="lab">Kendi Maçını Kur!</div>
-      <h2>Maç yapacak takımları seçelim 👇</h2>
-      <p> Bu uygulama <strong style="color:var(--gold)"> Olasılık ve İstatistik Öğretimi </strong> dersi için yapılmıştır.</p>
+      <h2>2 Takım Seç 👇</h2>
+      <p>4 takımdan <strong style="color:var(--gold)">2 tanesini</strong> seç.</p>
     </div>
     <div id="team-picker" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;max-width:900px;margin:0 auto 28px"></div>
     <div style="text-align:center;margin-bottom:20px">
@@ -441,11 +442,12 @@
   <div class="modal">
     <span class="badge">Düşünme Molası</span>
     <h3 id="modal-title">İlginç bir tahmin!</h3>
-    <p id="modal-sub">Tahminini <b><span id="modal-pct">—</span></b> olarak yerleştirdin:</p>
+    <p id="modal-sub">Tahminini <b><span id="modal-pct">—</span></b> olarak yerleştirdin. Şimdi düşün:</p>
     <ul class="qlist">
-      <li>📊 Hangi verilere bakarak tahmin yaptın?</li>
-      <li>🎲 Aynı maçı 100 kez oynasalar hep aynı sonuç çıkar mı?</li>
-      <li>👥 Sınıf ne düşünüyor?</li>
+      <li>📊 Hangi istatistiğe bakarak tahmin yaptın? Puan mı, gol sayısı mı?</li>
+      <li>🤔 "Son 5 maçın 4'ünü kazandı" = "Bu maçı da <em>kesin kazanır</em>" demek midir?</li>
+      <li>🎲 Aynı maçı 10 kez oynasalar hep aynı sonuç çıkar mı?</li>
+      <li>👥 Yanındaki arkadaşının tahmini seninkiyle aynı mı? Neden farklı olabilir?</li>
     </ul>
     <div class="btn-row">
       <button class="btn ghost dark" id="btn-modal-back">↩ Tahmini Değiştir</button>
@@ -696,7 +698,7 @@ const modal=document.getElementById('modal');
 btnConfirm.addEventListener('click',()=>{
   if(!S.prediction)return;
   document.getElementById('modal-pct').textContent=S.prediction.pct+'% ('+S.prediction.name+')';
-  const titles={0:'İmkânsız mı dedin? 🤨',1:'Pek olmaz mı diyorsun?',2:'Berabere kalır mı dedin?',3:'Çok olası diyorsun!',4:'Kesin kazanır mı dedin?'};
+  const titles={0:'İmkânsız mı dedin? 🤨',1:'Pek olmaz mı diyorsun?',2:'Yarı yarıya mı? 50/50?',3:'Çok olası diyorsun!',4:'Kesin kazanır mı dedin?'};
   document.getElementById('modal-title').textContent=titles[S.prediction.idx]||'Tahmin yapıldı!';
   modal.classList.add('active');
 });
