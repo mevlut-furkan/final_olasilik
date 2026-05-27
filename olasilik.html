@@ -903,7 +903,7 @@ body::before{
 </style>
 </head>
 <body>
-<a href="anasayfa.html" style="position:fixed;top:16px;left:16px;z-index:999;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:50px;background:#1B2D4F;color:#fff8e7;font-family:'Fredoka One',cursive;font-size:14px;letter-spacing:.3px;text-decoration:none;border:2px solid rgba(255,255,255,.15);box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#FF9500'" onmouseout="this.style.transform='none';this.style.background='#1B2D4F'">← Ana Sayfa</a>
+<a href="index.html" style="position:fixed;top:16px;left:16px;z-index:999;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:50px;background:#1B2D4F;color:#fff8e7;font-family:'Fredoka One',cursive;font-size:14px;letter-spacing:.3px;text-decoration:none;border:2px solid rgba(255,255,255,.15);box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.background='#FF9500'" onmouseout="this.style.transform='none';this.style.background='#1B2D4F'">← Ana Sayfa</a>
 <div class="app">
 
   <div class="header">
@@ -1070,7 +1070,6 @@ body::before{
         <div class="card yt-bar-card">
           <div class="yt-bar-title">
             <span>Yazı ↔ Tura oranı</span>
-            <span class="target-pill">⚖️ Hedef: %50</span>
           </div>
           <div class="yt-bar-wrap">
             <div class="yt-bar-y" id="barY" style="width:50%"></div>
@@ -1744,16 +1743,6 @@ function updateFeedback(){
         actual:drawCounts[i],actualP:drawCounts[i]/td});
     }
   });
-
-  if(misses.length>0&&matches.length>0){
-    fb.className='feedback-box mid show';
-    fb.innerHTML=`<div class="fb-title">👍 Yakın ama tam değil</div>
-      <strong>${matches.length}</strong> tahminin doğru,
-      <strong>${misses.length}</strong> tanesi şaşırdı:
-      <ul>${misses.map(m=>`<li><strong>${m.c.n}</strong>: sen ${snapLabel(m.pred)}, gerçekte ${snapLabel(m.real)} (${m.actual}/${td})</li>`).join('')}</ul>`;
-  } else {
-    fb.className='feedback-box';
-  }
 }
 function snapLabel(z){return `<em>${z.icon} ${z.label}</em>`}
 
